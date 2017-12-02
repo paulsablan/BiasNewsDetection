@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css')}}">
+    <script src="{{ url_for('static', filename='js/jquery/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<title>Bias News Detection</title>
+</head>
+<body>
+
+
+  <center><h1>Bias News Detection</h1></center>
+  
+  <h4>Import Excel</h4>
+  <form method="post">
+  <input type="file" id="openfile" class="form-control" accept=".xls,.xlsx,.csv" onchange="readfile()" onclick="readfile()">
+  <br>        
+  <label for="newsheading">News Heading:</label><br>
+  <input type="text" id="newsheading" class="form-control" value="{{ headline }}"><br>
+  <label for="newsbody">News Body:</label><br> 
+  <textarea rows="8" cols="50" id="newsbody" class="form-control">{{ body }}</textarea><br>
+  <input type="submit" value="Detect" class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#myModal">
+
+  </form>
+
+  
+  <!-- Modal -->
+  <div class="modal hide fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!--
+  <h3>Results</h3>
+  <input type="range" min="-1" max="1" id="result" onchange="updateTextInput(this.value);" onload="updateTextInput(this.value);">
+  <input type="text" id="resultVal" value="0" readonly>
+  <p>
+    <h4 style="color:blue">Left Bias</h4>
+    <h4 style="color:violet">Center Bias</h4>
+    <h4 style="color:red">Right Bias</h4>    
+  </p>
+  -->
+
+
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    
+</body>
+</html> 
