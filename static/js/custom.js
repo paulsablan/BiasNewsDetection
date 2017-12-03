@@ -33,6 +33,6 @@ function readFile(){
 //modal
 
 // Get the modal
-$(".btn-detect").on("click","load","change",function(){
-  $(".modal").modal('toggle');
+$(".btn-detect").click(function(){
+  $(".modal").modal('show');
 });

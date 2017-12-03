@@ -12,11 +12,9 @@ def index():
 
 	headline = sheet['A1'].value
 	body = sheet['B1'].value
+	result = 'NEUTRAL'
 
-	print(headline)
-	print(body)
-
-	return render_template('index.html', headline = headline, body = body)
+	return render_template('index.html',result=result, headline = headline, body = body)
 
 if __name__ == "__main__":
 	app.run(debug=True) 
