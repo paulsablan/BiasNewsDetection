@@ -2,22 +2,60 @@ $(function()
     {
         $('#openfile').change(function(e){
             var fileName = e.target.files[0].name;
+            
             $.getJSON('/', {
               excelfile: fileName
             });
-            alert('The file "' + fileName +  '" has been selected.');
+            
+            e.preventDefault();
+
+            $.ajax ({
+              url: "/getdata/" + fileName,
+              success: function(data) {
+                console.log(data);
+                document.getElementById('newshead').value = data.headline;
+                document.getElementById('newsbody').value = data.body;
+                
+              }
+            });
+
+           /* $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+                  (function(){
+                      $.getJSON(
+                          $SCRIPT_ROOT+"/", // Your AJAX route here
+                          function(data) {
+                             data.result;
+                             data.headline;
+                             data.body;
+                          }
+                      );
+                      setTimeout(arguments.callee, 10000);
+            })();*/
         });
         // Get the modal
-        $(".btn-detect").click(function(){
-          $(".modal").modal('show');
+        $("#btndetect").click(function(){
+          var result = "";
+          var heading = document.getElementById("newshead").value;
+          var body = document.getElementById("newsbody").value;
+          var modalvalue = "<h3>" + heading + "</h3>" + "<br>" + body ;
           
-          var heading = $("#newsheading").val();
-          var body = $("#newsbody").val();
-          var modalvalue = "<h3>" + heading + "</3>" + "<p>" + body + "</p>";
-          $(".modal").html(modalvalue);
-          
+          $.getJSON('/', {
+              newsheadline: heading,
+              newsbody: body
+          });
+         
+          $.ajax ({
+              url: "/gettext/" + heading + "/" + body,
+              success: function(data) {
+                console.log(data.result);
+                console.log(data.headline);
+                console.log(data.body);
+                document.getElementById('modalbody').innerHTML = "The result is <strong>" + data.result + "</strong> <h3>" + data.headline + "</h3>" + "<br>" + data.body ;
+                
+              }
+            });
+            
         });
 
 
 });
-

@@ -23,13 +23,13 @@
   <input type="file" id="openfile" class="form-control" accept=".xls,.xlsx,.csv">
   <br>        
   <label for="newsheading">News Heading:</label><br>
-  <input type="text" id="newsheading" class="form-control" value="{{ headline }}"><br>
+  <input type="text" id="newshead" class="form-control" /><br>
   <label for="newsbody">News Body:</label><br> 
-  <textarea rows="10" cols="50" id="newsbody" class="form-control">{{ body }}</textarea><br>
+  <textarea rows="10" cols="50" id="newsbody" class="form-control"></textarea><br>
   <!--<input type="submit" value="Detect" class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#myModal"> -->
    <div class="container">
   <!-- Trigger the modal with a button -->
-  <input type="button" value="Detect" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+  <input type="button" value="Detect" class="btn btn-success" id="btndetect" class="btn-detect" data-toggle="modal" data-target="#myModal">
 
   <!-- Modal -->
 
@@ -40,7 +40,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Result</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="modalbody">
           <p>The news is <span class="resultsnews">{{ result }}</span></p> 
           <h3>{{ headline }}</h3>
           {{ body }}
